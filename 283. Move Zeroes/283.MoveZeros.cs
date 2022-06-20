@@ -1,27 +1,27 @@
 public class Solution {
-    public int[] TwoSum(int[] num, int target) {
+    public void MoveZeroes(int[] arr) {
         
-         int left = 0, right = num.Length-1;
-      
-        int looking = 0;
-        for(int i = 0;i<num.Length;i++){
-           left = i+1;
-            while(left<=right){
-                int mid = left+(right-left)/2;
-                looking = target - num[i];
-           
-                if(looking==num[mid]){
-                    return new int[2]{i+1,mid+1};
-                    break;
-                }else if(looking<num[mid]){
-                    right = mid -1;
-                }else{
-                    left = mid +1;
-                }
+        int length = arr.Length;
+       
+        Queue<int> q = new Queue<int>();
+        
+        int count = 0;
+        
+        foreach(int item in arr){
+            if (item == 0){count++;}
+            if(item!=0){
+                q.Enqueue(item);  
             }
         }
-        return new int[2]{0,0};
-        
-        
+     
+        while(count>0){
+            q.Enqueue(0);
+            count--;
+        }
+        for(int i=0;i<length;i++){
+            arr[i]=q.Dequeue();
+        }
+      
+      
     }
 }
